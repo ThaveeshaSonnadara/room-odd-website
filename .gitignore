@@ -6,6 +6,10 @@ node_modules
 
 # Claude settings and memory
 .claude/
+.impeccable/
+.antigravity/
+.claude/settings.local.json
+.mcp.json
 
 # Next.js build output
 .next/
