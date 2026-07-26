@@ -4,7 +4,9 @@
       "Bash(claude mcp *)",
       "Bash(npm test *)",
       "Bash(git init *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   },
   "enableAllProjectMcpServers": true,
