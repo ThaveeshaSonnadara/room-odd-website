@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ScrollToTop } from '@/components/ui/ScrollToTop';
+import { companyInfo } from '@/lib/data';
 import '@/styles/globals.css';
 
 /* ── Font Loading ─────────────────────────────────────────────────── */
@@ -23,6 +25,7 @@ const inter = Inter({
 /* ── SEO Metadata ─────────────────────────────────────────────────── */
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://roomodd.lk'),
   title: {
     default: 'Room ODD — Chartered Architectural Consultancy | Sri Lanka',
     template: '%s | Room ODD',
@@ -54,6 +57,26 @@ export const metadata: Metadata = {
   },
 };
 
+/* ── Structured JSON-LD Schema (Google LocalBusiness / ArchitecturalFirm) ── */
+
+const jsonLdSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: companyInfo.name,
+  description: companyInfo.tagline,
+  url: 'https://roomodd.lk',
+  telephone: companyInfo.phone,
+  email: companyInfo.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '42 Ward Place',
+    addressLocality: 'Colombo 07',
+    addressCountry: 'LK',
+  },
+  openingHours: 'Mo-Fr 09:00-18:00',
+  priceRange: '$$$$',
+};
+
 /* ── Root Layout ──────────────────────────────────────────────────── */
 
 export default function RootLayout({
@@ -66,10 +89,17 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${inter.variable} h-full`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
+        />
+      </head>
       <body className="h-full bg-canvas text-canvas-dark font-body antialiased">
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );
