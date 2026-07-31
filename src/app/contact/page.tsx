@@ -45,7 +45,7 @@ const budgetRanges = [
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 as const },
+  viewport: { once: true, amount: 0.1 as const },
   transition: { duration: 0.6, ease: [0.22, 0.61, 0.36, 1] },
 };
 
@@ -181,7 +181,7 @@ export default function ContactPage() {
                   </div>
 
                   {/* Email + Phone */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <div>
                       <label htmlFor="email" className={labelClasses}>
                         Email Address *
@@ -212,7 +212,7 @@ export default function ContactPage() {
                   </div>
 
                   {/* Project Type + Budget */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                     <div>
                       <label htmlFor="projectType" className={labelClasses}>
                         Project Type *

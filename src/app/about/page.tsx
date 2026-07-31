@@ -11,7 +11,7 @@ import { companyInfo, stats } from '@/lib/data';
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 as const },
+  viewport: { once: true, amount: 0.1 as const },
   transition: { duration: 0.6, ease: [0.22, 0.61, 0.36, 1] },
 };
 
@@ -60,11 +60,10 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Based in Colombo, Sri Lanka, we are a chartered architectural
-                  consultancy with over {new Date().getFullYear() - companyInfo.founded} years
-                  of practice across residential, commercial, hospitality, and
-                  interior architecture. Our work is grounded in the belief that
-                  great design is invisible — it doesn&apos;t demand attention,
-                  it simply makes life better.
+                  consultancy with over 25 years of practice across residential,
+                  commercial, hospitality, and interior architecture. Our work is
+                  grounded in the belief that great design is invisible — it
+                  doesn&apos;t demand attention, it simply makes life better.
                 </p>
                 <p>
                   We design for permanence, not fashion. For people, not
@@ -130,7 +129,7 @@ export default function AboutPage() {
                 className="bg-beige p-8 lg:p-10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{
                   duration: 0.5,
                   delay: i * 0.08,

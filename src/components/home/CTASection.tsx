@@ -18,7 +18,7 @@ export function CTASection() {
             className="editorial-label text-white/40 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
           >
             Start Your Project
@@ -29,11 +29,11 @@ export function CTASection() {
             className="font-display text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tighter"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 0.61, 0.36, 1] }}
           >
-            Ready to Transform
-            <br />
+            Ready to Transform{' '}
+            <br className="hidden sm:inline" />
             Your Space?
           </motion.h2>
 
@@ -42,7 +42,7 @@ export function CTASection() {
             className="mt-6 font-body text-lg text-white/50 max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
           >
             Whether you&apos;re planning a new home, renovating an existing
@@ -55,7 +55,7 @@ export function CTASection() {
             className="mt-10 flex flex-wrap justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
           >
             <Link
@@ -77,7 +77,7 @@ export function CTASection() {
             className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <a

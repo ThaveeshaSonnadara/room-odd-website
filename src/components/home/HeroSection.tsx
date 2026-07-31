@@ -45,8 +45,8 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
           >
-            Crafting Spaces
-            <br />
+            Crafting Spaces{' '}
+            <br className="hidden sm:inline" />
             <span className="text-white/60">That Define Living</span>
           </motion.h1>
 
