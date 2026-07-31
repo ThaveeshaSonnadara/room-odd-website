@@ -88,6 +88,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${cormorant.variable} ${inter.variable} h-full`}
+      suppressHydrationWarning
     >
       <head>
         <script
@@ -95,7 +96,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSchema) }}
         />
       </head>
-      <body className="h-full bg-canvas text-canvas-dark font-body antialiased">
+      <body
+        className="h-full bg-canvas text-canvas-dark font-body antialiased"
+        suppressHydrationWarning
+      >
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
