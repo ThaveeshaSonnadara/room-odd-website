@@ -30,7 +30,7 @@ export function HeroSection() {
         <div className="max-w-4xl">
           {/* Editorial label */}
           <motion.p
-            className="editorial-label text-white/50 mb-6"
+            className="editorial-label text-white/70 mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
@@ -47,12 +47,12 @@ export function HeroSection() {
           >
             Crafting Spaces{' '}
             <br className="hidden sm:inline" />
-            <span className="text-white/60">That Define Living</span>
+            <span className="text-white/80">That Define Living</span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            className="mt-8 font-body text-lg text-white/60 max-w-xl leading-relaxed"
+            className="mt-8 font-body text-lg text-white/80 max-w-xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
@@ -77,7 +77,7 @@ export function HeroSection() {
             </Link>
             <Link
               href="/projects"
-              className="inline-flex items-center font-body text-xs uppercase tracking-wider px-8 py-4 bg-transparent text-white border border-white/30 hover:bg-white/10 transition-all duration-300"
+              className="inline-flex items-center font-body text-xs uppercase tracking-wider px-8 py-4 bg-transparent text-white border border-white/40 hover:bg-white/10 transition-all duration-300"
             >
               View Projects
             </Link>
@@ -92,9 +92,9 @@ export function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
       >
-        <span className="editorial-label text-white/30">Scroll</span>
+        <span className="editorial-label text-white/60">Scroll</span>
         <motion.div
-          className="w-px h-8 bg-white/30"
+          className="w-px h-8 bg-white/40"
           animate={{ scaleY: [1, 0.5, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         />

@@ -43,7 +43,7 @@ export function Footer() {
                   ODD
                 </span>
               </Link>
-              <p className="mt-4 font-body text-sm text-white/40 max-w-md">
+              <p className="mt-4 font-body text-sm text-white/70 max-w-md leading-relaxed">
                 Chartered Architectural Consultancy. Designing exceptional
                 spaces across Sri Lanka since {companyInfo.founded}.
               </p>
@@ -65,7 +65,7 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
             {/* Studio */}
             <div>
-              <h3 className="editorial-label text-white/40 mb-6">
+              <h3 className="editorial-label text-white/60 mb-6">
                 Studio
               </h3>
               <ul className="space-y-3">
@@ -73,7 +73,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                      className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
                     >
                       {link.label}
                     </Link>
@@ -84,7 +84,7 @@ export function Footer() {
 
             {/* Services */}
             <div>
-              <h3 className="editorial-label text-white/40 mb-6">
+              <h3 className="editorial-label text-white/60 mb-6">
                 Services
               </h3>
               <ul className="space-y-3">
@@ -92,7 +92,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                      className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
                     >
                       {link.label}
                     </Link>
@@ -103,19 +103,19 @@ export function Footer() {
 
             {/* Contact */}
             <div>
-              <h3 className="editorial-label text-white/40 mb-6">
+              <h3 className="editorial-label text-white/60 mb-6">
                 Contact
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <p className="font-body text-sm text-white/60">
+                  <p className="font-body text-sm text-white/70">
                     {companyInfo.address}
                   </p>
                 </li>
                 <li>
                   <a
                     href={`tel:${companyInfo.phone.replace(/\s/g, '')}`}
-                    className="font-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
                   >
                     {companyInfo.phone}
                   </a>
@@ -123,13 +123,13 @@ export function Footer() {
                 <li>
                   <a
                     href={`mailto:${companyInfo.email}`}
-                    className="font-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
                   >
                     {companyInfo.email}
                   </a>
                 </li>
                 <li>
-                  <p className="font-body text-xs text-white/30 mt-2">
+                  <p className="font-body text-xs text-white/50 mt-2">
                     {companyInfo.hours}
                   </p>
                 </li>
@@ -138,7 +138,7 @@ export function Footer() {
 
             {/* Social */}
             <div>
-              <h3 className="editorial-label text-white/40 mb-6">
+              <h3 className="editorial-label text-white/60 mb-6">
                 Follow
               </h3>
               <ul className="space-y-3">
@@ -147,7 +147,7 @@ export function Footer() {
                     href={companyInfo.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
                   >
                     Instagram
                   </a>
@@ -157,7 +157,7 @@ export function Footer() {
                     href={companyInfo.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
                   >
                     LinkedIn
                   </a>
@@ -167,7 +167,7 @@ export function Footer() {
                     href={companyInfo.social.pinterest}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
                   >
                     Pinterest
                   </a>
@@ -182,7 +182,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <Container>
           <div className="flex flex-col sm:flex-row items-center justify-between py-6 gap-4">
-            <p className="font-body text-xs text-white/30">
+            <p className="font-body text-xs text-white/50">
               &copy; {currentYear} Room ODD (Pvt) Ltd. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
@@ -190,7 +190,7 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-xs text-white/30 hover:text-white/60 transition-colors duration-300"
+                  className="font-body text-xs text-white/50 hover:text-white/80 transition-colors duration-300"
                 >
                   {link.label}
                 </Link>
