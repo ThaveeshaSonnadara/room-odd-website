@@ -13,7 +13,9 @@ export async function POST(request: Request) {
 
     const resend = new Resend(apiKey);
 
-    const { name, email, message } = await request.json();
+    const body = await request.json();
+    const { name, email, phone, projectType, budget, message } = body;
+
     if (!email || !message) {
       return NextResponse.json(
         { error: 'Email and message are required.' },
@@ -29,21 +31,45 @@ export async function POST(request: Request) {
       );
     }
 
+    const fromEmail =
+      process.env.RESEND_FROM_EMAIL || 'Room ODD <onboarding@resend.dev>';
+
+    // Send email using Resend template 'new-consultation-request'
     const emailResponse = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'no-reply@resend.dev',
+      from: fromEmail,
       to: toEmail,
-      subject: `New contact from ${name ?? 'Anonymous'} (${email})`,
-      html: `<p><strong>Message:</strong></p><p>${message.replace(/\n/g, '<br/>')}</p>`,
+      subject: `New Consultation Request from ${name || 'Client'} (${projectType || 'General'})`,
+      template: {
+        id: 'new-consultation-request',
+        variables: {
+          // Standard lowercase keys
+          name: name || 'Not specified',
+          email: email,
+          phone: phone || 'Not provided',
+          projectType: projectType || 'General Consultation',
+          budget: budget || 'Not specified',
+          message: message,
+
+          // Upper/snake case fallbacks to match any Resend template syntax
+          NAME: name || 'Not specified',
+          EMAIL: email,
+          PHONE: phone || 'Not provided',
+          PROJECT_TYPE: projectType || 'General Consultation',
+          BUDGET: budget || 'Not specified',
+          MESSAGE: message,
+        },
+      },
     });
 
     if (emailResponse.error) {
-      console.error('Resend error:', emailResponse.error);
+      console.error('Resend template error:', emailResponse.error);
       return NextResponse.json(
-        { error: 'Failed to send email.' },
+        { error: 'Failed to send consultation email.' },
         { status: 500 },
       );
     }
-    return NextResponse.json({ success: true });
+
+    return NextResponse.json({ success: true, data: emailResponse.data });
   } catch (err) {
     console.error('Contact API error:', err);
     return NextResponse.json(
