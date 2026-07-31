@@ -87,7 +87,11 @@ export default function ContactPage() {
       reset();
     } catch (err: unknown) {
       const message =
-        err instanceof Error ? err.message : 'Something went wrong';
+        err instanceof Error
+          ? err.message
+          : typeof err === 'string'
+            ? err
+            : 'An error occurred while sending your message. Please try again.';
       setSubmitError(message);
       setSubmitStatus('error');
     }
