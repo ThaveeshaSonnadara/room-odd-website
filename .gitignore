@@ -15,7 +15,7 @@ out/
 build/
 dist/
 
-# Local IDE & AI settings
+# Local IDE & AI session caches
 .claude/
 .impeccable/
 .antigravity/
@@ -23,10 +23,9 @@ dist/
 .idea/
 .mcp.json
 
-# Local specs, skills, references & test mocks
+# Local scratch files, specifications & test mocks
 reference - screenshots/
 __mocks__/
-DESIGN.md
 ROOM ODD — MASTER PROJECT SPECIFICATION.md
 SKILL.md
 
