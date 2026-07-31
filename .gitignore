@@ -1,16 +1,35 @@
-node_modules
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # Environment files
 .env
-.env.local
-.env.production
-
-# Claude settings and memory
-.claude/
-.impeccable/
-.antigravity/
-.claude/settings.local.json
-.mcp.json
+.env.*
+!.env.example
 
 # Next.js build output
 .next/
 out/
+build/
+dist/
+
+# Local IDE & AI settings
+.claude/
+.impeccable/
+.antigravity/
+.vscode/
+.idea/
+.mcp.json
+
+# Local specs, skills, references & test mocks
+reference - screenshots/
+__mocks__/
+DESIGN.md
+ROOM ODD — MASTER PROJECT SPECIFICATION.md
+SKILL.md
+
+# OS metadata
+.DS_Store
+Thumbs.db

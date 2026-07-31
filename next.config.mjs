@@ -1,11 +1,12 @@
-import { withNativewind } from 'nativewind/next-plugin';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  experimental: { appDir: true },
-  images: { remotePatterns: [{ protocol: 'https', hostname: '**' }] },
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'cdn.sanity.io' },
+    ],
+  },
 };
 
-export default withNativewind(nextConfig);
+export default nextConfig;

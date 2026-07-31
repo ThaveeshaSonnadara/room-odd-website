@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────────────────────────────────
+   Room ODD — Global Styles
+   Contemporary Architectural Minimalism & Editorial Precision
+   ─────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body), 'Inter', sans-serif;
+    background-color: #fafafa;
+    color: #121316;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+
+  /* Text selection – bronze accent */
+  ::selection {
+    background-color: #b38051;
+    color: #ffffff;
+  }
+
+  /* Focus-visible ring for accessibility */
+  :focus-visible {
+    outline: 2px solid #b38051;
+    outline-offset: 2px;
+  }
+
+  /* Remove default focus outline (kept for :focus-visible above) */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Smooth image rendering */
+  img {
+    image-rendering: auto;
+  }
+}
+
+@layer components {
+  /* Structural thin-rule border — blueprint grid aesthetic */
+  .structural-border {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .structural-border-light {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Editorial label — tiny uppercase technical label */
+  .editorial-label {
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* Section divider line */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .section-divider-light {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Container max width */
+  .container-narrow {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Architectural grid overlay (decorative) */
+  .grid-overlay {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+  }
+}
+
+@layer utilities {
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animate on scroll fade-in */
+  .animate-fade-in {
+    animation: fade-in 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+}
+
+/* ── Keyframes ───────────────────────────────────────────────────── */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

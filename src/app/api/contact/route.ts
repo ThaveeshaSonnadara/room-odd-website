@@ -1,19 +1,32 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Ensure the Resend API key is provided via environment variable
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: 'Email service not configured.' },
+        { status: 500 },
+      );
+    }
+
+    const resend = new Resend(apiKey);
+
     const { name, email, message } = await request.json();
     if (!email || !message) {
-      return NextResponse.json({ error: 'Email and message are required.' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Email and message are required.' },
+        { status: 400 },
+      );
     }
-    // Basic validation could be expanded
+
     const toEmail = process.env.CONTACT_RECEIVER_EMAIL;
     if (!toEmail) {
-      return NextResponse.json({ error: 'Receiver email not configured.' }, { status: 500 });
+      return NextResponse.json(
+        { error: 'Receiver email not configured.' },
+        { status: 500 },
+      );
     }
 
     const emailResponse = await resend.emails.send({
@@ -25,11 +38,17 @@ export async function POST(request: Request) {
 
     if (emailResponse.error) {
       console.error('Resend error:', emailResponse.error);
-      return NextResponse.json({ error: 'Failed to send email.' }, { status: 500 });
+      return NextResponse.json(
+        { error: 'Failed to send email.' },
+        { status: 500 },
+      );
     }
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error('Contact API error:', err);
-    return NextResponse.json({ error: 'Internal server error.' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal server error.' },
+      { status: 500 },
+    );
   }
 }
