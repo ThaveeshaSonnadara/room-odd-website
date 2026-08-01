@@ -31,11 +31,11 @@ export function ScrollToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
-          className="fixed bottom-8 right-8 z-40 flex items-center justify-center w-12 h-12 bg-canvas-dark text-white hover:bg-bronze transition-colors duration-300 border border-white/10 shadow-lg group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze"
+          className="fixed bottom-8 right-8 z-40 flex items-center justify-center w-10 h-10 bg-canvas-dark/90 text-white hover:bg-bronze transition-colors duration-300 border border-white/10 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bronze backdrop-blur-sm"
           aria-label="Scroll to top of page"
         >
           <svg
-            className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1"
+            className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
