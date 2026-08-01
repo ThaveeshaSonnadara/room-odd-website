@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     /* ── Colour Palette ─────────────────────────────────────────────
@@ -145,11 +146,13 @@ module.exports = {
       },
       transitionTimingFunction: {
         architectural: 'cubic-bezier(0.22, 0.61, 0.36, 1)',
+        'ease-out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
       transitionDuration: {
         400: '400ms',
         600: '600ms',
         800: '800ms',
+        1000: '1000ms',
       },
       aspectRatio: {
         '4/3': '4 / 3',
@@ -160,15 +163,28 @@ module.exports = {
       maxWidth: {
         '8xl': '88rem',
       },
+      backdropBlur: {
+        xs: '2px',
+      },
       keyframes: {
         'loading-bar': {
           '0%': { transform: 'translateX(-100%)' },
           '50%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(100%)' },
         },
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'draw-line': {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
+        },
       },
       animation: {
         'loading-bar': 'loading-bar 1.5s ease-in-out infinite',
+        'fade-up': 'fade-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards',
+        'draw-line': 'draw-line 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards',
       },
     },
   },
