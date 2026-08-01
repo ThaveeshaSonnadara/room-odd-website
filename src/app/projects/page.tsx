@@ -37,21 +37,28 @@ export default function ProjectsPage() {
             subtitle="A curated collection of residential, commercial, and hospitality projects that define our practice."
           />
 
-          {/* Filter bar */}
-          <div className="mt-12 flex flex-wrap gap-2" role="tablist" aria-label="Project categories">
+          {/* Filter bar with sliding indicator */}
+          <div className="mt-10 sm:mt-14 flex overflow-x-auto whitespace-nowrap pb-2 gap-2 sm:flex-wrap" role="tablist" aria-label="Project categories">
             {categories.map((cat) => (
               <button
                 key={cat.value}
                 onClick={() => setActiveCategory(cat.value)}
                 role="tab"
                 aria-selected={activeCategory === cat.value}
-                className={`font-body text-xs uppercase tracking-wider px-5 py-2.5 transition-all duration-300 ${
+                className={`relative font-body text-xs uppercase tracking-wider px-5 py-2.5 shrink-0 transition-all duration-300 ${
                   activeCategory === cat.value
                     ? 'bg-canvas-dark text-white'
-                    : 'bg-transparent text-canvas-dark/50 hover:text-canvas-dark structural-border'
+                    : 'bg-transparent text-canvas-dark/40 hover:text-canvas-dark/70 structural-border'
                 }`}
               >
                 {cat.label}
+                {activeCategory === cat.value && (
+                  <motion.span
+                    layoutId="projectFilterIndicator"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-bronze"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -59,10 +66,10 @@ export default function ProjectsPage() {
       </section>
 
       {/* Project grid */}
-      <section className="pb-24 lg:pb-32 bg-canvas">
+      <section className="pb-28 lg:pb-36 bg-canvas">
         <Container>
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
+            className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12"
             layout
           >
             {filtered.map((project) => (
@@ -80,7 +87,7 @@ export default function ProjectsPage() {
           </motion.div>
 
           {filtered.length === 0 && (
-            <p className="text-center font-body text-canvas-dark/40 py-20">
+            <p className="text-center font-body text-canvas-dark/35 py-24">
               No projects found in this category.
             </p>
           )}
