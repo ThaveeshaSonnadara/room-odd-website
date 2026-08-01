@@ -9,10 +9,10 @@ import { services } from '@/lib/data';
 
 export function ServicesOverview() {
   return (
-    <section className="py-24 lg:py-32 bg-canvas">
+    <section className="py-28 lg:py-36 bg-canvas">
       <Container>
         {/* Heading */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20">
           <SectionHeading
             label="01 / Our Expertise"
             title="Design Disciplines"
@@ -20,7 +20,7 @@ export function ServicesOverview() {
           />
           <Link
             href="/services"
-            className="mt-8 lg:mt-0 inline-flex items-center font-body text-xs uppercase tracking-wider text-canvas-dark/50 hover:text-bronze transition-colors duration-300 group"
+            className="mt-8 lg:mt-0 inline-flex items-center font-body text-xs uppercase tracking-wider text-canvas-dark/40 hover:text-bronze transition-colors duration-300 group hover-underline"
           >
             All Services
             <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
@@ -30,7 +30,7 @@ export function ServicesOverview() {
         </div>
 
         {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-canvas-dark/8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-canvas-dark/6">
           {services.map((service) => (
             <ServiceCard
               key={service.id}
