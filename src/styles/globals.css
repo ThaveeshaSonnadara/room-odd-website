@@ -12,12 +12,16 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
     font-family: var(--font-body), 'Inter', sans-serif;
     background-color: #fafafa;
     color: #121316;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   h1,
@@ -102,6 +106,82 @@
       linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
     background-size: 4rem 4rem;
   }
+
+  /* ── Refined: Architectural dot-grid pattern ────────────────── */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 2rem 2rem;
+  }
+
+  .dot-grid-dark {
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    background-size: 2rem 2rem;
+  }
+
+  /* ── Refined: Bronze accent rule ────────────────────────────── */
+  .bronze-rule {
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background-color: #b38051;
+  }
+
+  .bronze-rule-wide {
+    display: block;
+    width: 5rem;
+    height: 1px;
+    background-color: #b38051;
+  }
+
+  /* ── Refined: Architectural vertical line connector ─────────── */
+  .vertical-connector {
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(179, 128, 81, 0.4), rgba(179, 128, 81, 0));
+  }
+
+  /* ── Refined: Hover reveal underline ────────────────────────── */
+  .hover-underline {
+    position: relative;
+  }
+
+  .hover-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #b38051;
+    transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .hover-underline:hover::after {
+    width: 100%;
+  }
+
+  /* ── Refined: Card hover top-border reveal ──────────────────── */
+  .card-hover-accent {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-hover-accent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #b38051;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    z-index: 1;
+  }
+
+  .card-hover-accent:hover::before {
+    transform: scaleX(1);
+  }
 }
 
 @layer utilities {
@@ -110,13 +190,44 @@
     text-wrap: balance;
   }
 
-  /* Animate on scroll fade-in */
+  /* ── Base animations ────────────────────────────────────────── */
   .animate-fade-in {
     animation: fade-in 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
   }
 
   .animate-slide-up {
     animation: slide-up 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+
+  /* ── Refined: Clip-path reveal (bottom to top) ─────────────── */
+  .animate-clip-reveal {
+    animation: clip-reveal 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+
+  /* ── Refined: Horizontal rule draw ─────────────────────────── */
+  .animate-rule-draw {
+    animation: rule-draw 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+
+  .animate-rule-draw-center {
+    animation: rule-draw-center 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+
+  /* ── Refined: Stagger delay utilities ──────────────────────── */
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
+
+  /* ── Refined: Premium letter-spacing hover ─────────────────── */
+  .hover-track-wider {
+    transition: letter-spacing 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .hover-track-wider:hover {
+    letter-spacing: 0.2em;
   }
 }
 
@@ -141,3 +252,129 @@
     transform: translateY(0);
   }
 }
+
+@keyframes clip-reveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes rule-draw-center {
+  from {
+    transform: scaleX(0);
+    transform-origin: center;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: center;
+  }
+}
+
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────
+   Room ODD — Architectural Dark Mode Theme System
+   Obsidian, Charcoal & Warm Bronze Aesthetics
+   ─────────────────────────────────────────────────────────────────── */
+
+.dark body {
+  background-color: #0d0e10;
+  color: #f4f4f5;
+}
+
+.dark .bg-canvas {
+  background-color: #0d0e10 !important;
+}
+
+.dark .bg-canvas\/95,
+.dark .bg-canvas\/90,
+.dark .bg-canvas\/80 {
+  background-color: rgba(13, 14, 16, 0.9) !important;
+}
+
+.dark .bg-white {
+  background-color: #14161a !important;
+}
+
+.dark .bg-beige {
+  background-color: #181a20 !important;
+}
+
+.dark .bg-stone {
+  background-color: #22252e !important;
+}
+
+.dark .text-canvas-dark {
+  color: #f4f4f5 !important;
+}
+
+.dark .text-canvas-dark\/80 {
+  color: rgba(244, 244, 245, 0.85) !important;
+}
+
+.dark .text-canvas-dark\/65,
+.dark .text-canvas-dark\/60,
+.dark .text-canvas-dark\/55,
+.dark .text-canvas-dark\/50 {
+  color: rgba(244, 244, 245, 0.65) !important;
+}
+
+.dark .text-canvas-dark\/45,
+.dark .text-canvas-dark\/40,
+.dark .text-canvas-dark\/35,
+.dark .text-canvas-dark\/30,
+.dark .text-canvas-dark\/25 {
+  color: rgba(244, 244, 245, 0.45) !important;
+}
+
+.dark .border-canvas-dark\/10,
+.dark .border-canvas-dark\/6 {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.dark .structural-border {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .bg-canvas-dark {
+  background-color: #181a20;
+}
+
+.dark .dot-grid-dark {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  color: #f4f4f5 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: rgba(244, 244, 245, 0.3) !important;
+}
+
