@@ -56,14 +56,14 @@ export function TestimonialsPreview() {
   const active = testimonials[activeIndex];
 
   return (
-    <section className="py-24 lg:py-32 bg-canvas">
+    <section className="py-28 lg:py-36 bg-canvas">
       <Container>
         <div className="max-w-4xl mx-auto">
           {/* Heading */}
           <SectionHeading
             label="03 / Client Words"
             title="Trusted Relationships"
-            className="mb-16"
+            className="mb-20"
           />
 
           {/* Testimonial container with hover pause listener */}
@@ -76,9 +76,9 @@ export function TestimonialsPreview() {
               {active && (
                 <motion.div
                   key={active.id}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
+                  exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
                 >
                   <TestimonialCard
@@ -92,9 +92,9 @@ export function TestimonialsPreview() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation indicators with auto-rotation progress */}
+          {/* Navigation indicators with refined progress */}
           <div
-            className="mt-12 flex items-center justify-between border-t border-canvas-dark/8 pt-8"
+            className="mt-14 flex items-center justify-between border-t border-canvas-dark/6 dark:border-white/10 pt-8"
             role="tablist"
             aria-label="Testimonial navigation"
           >
@@ -105,16 +105,16 @@ export function TestimonialsPreview() {
                   <button
                     key={t.id}
                     onClick={() => handleSelectTestimonial(i)}
-                    className="relative h-6 flex items-center group focus-visible:outline-none"
+                    className="relative h-6 flex items-center group focus-visible:outline-none cursor-pointer"
                     role="tab"
                     aria-selected={isActive}
                     aria-label={`Testimonial ${i + 1} from ${t.client}`}
                   >
                     <span
-                      className={`h-0.5 transition-all duration-400 block ${
+                      className={`h-[1.5px] transition-all duration-500 block ${
                         isActive
-                          ? 'w-12 bg-bronze'
-                          : 'w-6 bg-canvas-dark/20 group-hover:bg-canvas-dark/40'
+                          ? 'w-14 bg-bronze'
+                          : 'w-6 bg-canvas-dark/20 dark:bg-white/25 group-hover:bg-canvas-dark/40 dark:group-hover:bg-white/50'
                       }`}
                     />
                   </button>
@@ -123,14 +123,20 @@ export function TestimonialsPreview() {
             </div>
 
             {/* Subtle counter & status indicator */}
-            <div className="flex items-center gap-3 editorial-label text-canvas-dark/40">
+            <div className="flex items-center gap-3 editorial-label text-canvas-dark/35 dark:text-white/40">
               <span>
                 0{activeIndex + 1} / 0{testimonials.length}
               </span>
               {(isHovered || userPauseActive) && (
-                <span className="text-bronze text-2xs uppercase tracking-widest transition-opacity duration-300">
-                  • Reading Paused
-                </span>
+                <motion.span
+                  className="text-bronze text-2xs uppercase tracking-widest"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  • Paused
+                </motion.span>
               )}
             </div>
           </div>
