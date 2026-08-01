@@ -4,6 +4,7 @@ import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollToTop } from '@/components/ui/ScrollToTop';
+import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { companyInfo } from '@/lib/data';
 import '@/styles/globals.css';
 
@@ -87,7 +88,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${inter.variable} h-full`}
+      className={`${cormorant.variable} ${inter.variable} min-h-full`}
       suppressHydrationWarning
     >
       <head>
@@ -97,13 +98,15 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="h-full bg-canvas text-canvas-dark font-body antialiased"
+        className="min-h-screen bg-canvas text-canvas-dark font-body antialiased transition-colors duration-500"
         suppressHydrationWarning
       >
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <ScrollToTop />
+        <ThemeProvider>
+          <Header />
+          <main id="main-content">{children}</main>
+          <Footer />
+          <ScrollToTop />
+        </ThemeProvider>
       </body>
     </html>
   );
