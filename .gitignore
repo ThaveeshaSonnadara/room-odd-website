@@ -26,8 +26,11 @@ dist/
 # Local scratch files, specifications & test mocks
 reference - screenshots/
 __mocks__/
+docs/
 ROOM ODD — MASTER PROJECT SPECIFICATION.md
 SKILL.md
+PRODUCT.md
+DESIGN.md
 
 # OS metadata
 .DS_Store
