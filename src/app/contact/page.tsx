@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { CustomSelect } from '@/components/ui/CustomSelect';
+import { MapPin, Phone, Mail, Clock, Send, ArrowUpRight } from 'lucide-react';
 import { companyInfo } from '@/lib/data';
 
 /* ── Zod Schema ──────────────────────────────────────────────────── */
@@ -60,6 +62,7 @@ export default function ContactPage() {
   const {
     register,
     handleSubmit,
+    control,
     reset,
     formState: { errors },
   } = useForm<ContactFormData>({
@@ -98,9 +101,9 @@ export default function ContactPage() {
   };
 
   const inputClasses =
-    'w-full bg-transparent font-body text-sm text-canvas-dark placeholder:text-canvas-dark/30 py-3 border-b border-canvas-dark/15 focus:border-bronze focus:outline-none transition-colors duration-300';
-  const labelClasses = 'block editorial-label text-canvas-dark/40 mb-2';
-  const errorClasses = 'mt-1 font-body text-xs text-error';
+    'w-full bg-transparent font-body text-sm text-canvas-dark placeholder:text-canvas-dark/25 py-3.5 border-b border-canvas-dark/10 focus:border-bronze focus:outline-none transition-colors duration-400';
+  const labelClasses = 'block editorial-label text-canvas-dark/35 mb-2.5';
+  const errorClasses = 'mt-1.5 font-body text-xs text-error';
 
   return (
     <>
@@ -119,6 +122,14 @@ export default function ContactPage() {
           <motion.p className="editorial-label text-white/50 mb-4" {...fadeUp}>
             Get in Touch
           </motion.p>
+          <motion.span
+            className="block w-12 h-px bg-bronze/40 mb-6"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 0.61, 0.36, 1] }}
+            style={{ transformOrigin: 'left' }}
+          />
           <motion.h1
             className="font-display text-5xl md:text-6xl lg:text-7xl font-light text-white tracking-tighter"
             {...fadeUp}
@@ -129,7 +140,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form + Info */}
-      <section className="py-24 lg:py-32 bg-canvas">
+      <section id="contact-form" className="py-28 lg:py-36 bg-canvas scroll-mt-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
             {/* Form */}
@@ -137,20 +148,39 @@ export default function ContactPage() {
               <SectionHeading
                 label="Book a Consultation"
                 title="Tell Us About Your Project"
-                className="mb-12"
+                className="mb-14"
               />
 
               {submitStatus === 'sent' ? (
                 <motion.div
-                  className="py-16 text-center"
+                  className="py-20 text-center"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
                 >
+                  {/* Success checkmark */}
+                  <motion.div
+                    className="w-14 h-14 mx-auto mb-6 rounded-full border border-bronze/30 flex items-center justify-center"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.4, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
+                  >
+                    <svg className="w-6 h-6 text-bronze" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <motion.path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M5 13l4 4L19 7"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                      />
+                    </svg>
+                  </motion.div>
                   <p className="font-display text-3xl text-canvas-dark mb-4">
                     Thank You
                   </p>
-                  <p className="font-body text-base text-canvas-dark/60">
+                  <p className="font-body text-base text-canvas-dark/55">
                     We&apos;ve received your message and will be in touch within
                     48 hours to discuss your project.
                   </p>
@@ -164,7 +194,7 @@ export default function ContactPage() {
               ) : (
                 <form
                   onSubmit={handleSubmit(onSubmit)}
-                  className="space-y-8"
+                  className="space-y-9"
                   noValidate
                 >
                   {/* Name */}
@@ -185,7 +215,7 @@ export default function ContactPage() {
                   </div>
 
                   {/* Email + Phone */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                     <div>
                       <label htmlFor="email" className={labelClasses}>
                         Email Address *
@@ -216,51 +246,44 @@ export default function ContactPage() {
                   </div>
 
                   {/* Project Type + Budget */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                     <div>
                       <label htmlFor="projectType" className={labelClasses}>
                         Project Type *
                       </label>
-                      <select
-                        id="projectType"
-                        className={`${inputClasses} cursor-pointer`}
-                        {...register('projectType')}
-                        defaultValue=""
-                      >
-                        <option value="" disabled>
-                          Select a project type
-                        </option>
-                        {projectTypes.map((type) => (
-                          <option key={type} value={type}>
-                            {type}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.projectType && (
-                        <p className={errorClasses}>
-                          {errors.projectType.message}
-                        </p>
-                      )}
+                      <Controller
+                        name="projectType"
+                        control={control}
+                        render={({ field }) => (
+                          <CustomSelect
+                            id="projectType"
+                            placeholder="Select a project type"
+                            options={projectTypes}
+                            value={field.value || ''}
+                            onChange={field.onChange}
+                            error={errors.projectType?.message}
+                          />
+                        )}
+                      />
                     </div>
                     <div>
                       <label htmlFor="budget" className={labelClasses}>
                         Budget Range
                       </label>
-                      <select
-                        id="budget"
-                        className={`${inputClasses} cursor-pointer`}
-                        {...register('budget')}
-                        defaultValue=""
-                      >
-                        <option value="" disabled>
-                          Select budget range
-                        </option>
-                        {budgetRanges.map((range) => (
-                          <option key={range} value={range}>
-                            {range}
-                          </option>
-                        ))}
-                      </select>
+                      <Controller
+                        name="budget"
+                        control={control}
+                        render={({ field }) => (
+                          <CustomSelect
+                            id="budget"
+                            placeholder="Select budget range"
+                            options={budgetRanges}
+                            value={field.value || ''}
+                            onChange={field.onChange}
+                            error={errors.budget?.message}
+                          />
+                        )}
+                      />
                     </div>
                   </div>
 
@@ -291,11 +314,14 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={submitStatus === 'sending'}
-                    className="inline-flex items-center font-body text-xs uppercase tracking-wider px-8 py-4 bg-canvas-dark text-white hover:bg-olive-deep transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="inline-flex items-center gap-2 font-body text-xs uppercase tracking-wider px-8 py-4 bg-canvas-dark text-white hover:bg-olive-deep transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
                   >
-                    {submitStatus === 'sending'
-                      ? 'Sending…'
-                      : 'Send Message'}
+                    <span>
+                      {submitStatus === 'sending'
+                        ? 'Sending…'
+                        : 'Send Message'}
+                    </span>
+                    <Send className="w-3.5 h-3.5 text-bronze transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </button>
                 </form>
               )}
@@ -303,36 +329,41 @@ export default function ContactPage() {
 
             {/* Info sidebar */}
             <motion.aside className="lg:col-span-5" {...fadeUp}>
-              <div className="lg:sticky lg:top-32 space-y-12">
+              <div className="lg:sticky lg:top-32 space-y-14">
                 {/* Office */}
                 <div>
-                  <h3 className="editorial-label text-canvas-dark/40 mb-4">
+                  <h3 className="editorial-label text-canvas-dark/35 mb-4 flex items-center gap-2">
+                    <MapPin className="w-3.5 h-3.5 text-bronze" />
                     Studio Address
                   </h3>
                   <p className="font-body text-base text-canvas-dark">
                     {companyInfo.address}
                   </p>
-                  <p className="mt-2 font-body text-sm text-canvas-dark/50">
+                  <p className="mt-2 font-body text-sm text-canvas-dark/45 flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-bronze/70 shrink-0" />
                     {companyInfo.hours}
                   </p>
                 </div>
 
                 {/* Contact details */}
                 <div>
-                  <h3 className="editorial-label text-canvas-dark/40 mb-4">
+                  <h3 className="editorial-label text-canvas-dark/35 mb-4 flex items-center gap-2">
+                    <Phone className="w-3.5 h-3.5 text-bronze" />
                     Direct Contact
                   </h3>
-                  <div className="space-y-2">
+                  <div className="space-y-2.5">
                     <a
                       href={`tel:${companyInfo.phone.replace(/\s/g, '')}`}
-                      className="block font-body text-base text-canvas-dark hover:text-bronze transition-colors duration-300"
+                      className="flex items-center gap-2 font-body text-base text-canvas-dark hover:text-bronze transition-colors duration-300"
                     >
+                      <Phone className="w-4 h-4 text-canvas-dark/30" />
                       {companyInfo.phone}
                     </a>
                     <a
                       href={`mailto:${companyInfo.email}`}
-                      className="block font-body text-base text-canvas-dark hover:text-bronze transition-colors duration-300"
+                      className="flex items-center gap-2 font-body text-base text-canvas-dark hover:text-bronze transition-colors duration-300"
                     >
+                      <Mail className="w-4 h-4 text-canvas-dark/30" />
                       {companyInfo.email}
                     </a>
                   </div>
@@ -340,7 +371,7 @@ export default function ContactPage() {
 
                 {/* Social */}
                 <div>
-                  <h3 className="editorial-label text-canvas-dark/40 mb-4">
+                  <h3 className="editorial-label text-canvas-dark/35 mb-4">
                     Follow Us
                   </h3>
                   <div className="flex gap-6">
@@ -348,27 +379,29 @@ export default function ContactPage() {
                       href={companyInfo.social.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-sm text-canvas-dark/60 hover:text-bronze transition-colors duration-300"
+                      className="inline-flex items-center gap-1 font-body text-sm text-canvas-dark/50 hover:text-bronze transition-colors duration-300 group"
                     >
-                      Instagram
+                      <span>Instagram</span>
+                      <ArrowUpRight className="w-3 h-3 text-bronze/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </a>
                     <a
                       href={companyInfo.social.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-sm text-canvas-dark/60 hover:text-bronze transition-colors duration-300"
+                      className="inline-flex items-center gap-1 font-body text-sm text-canvas-dark/50 hover:text-bronze transition-colors duration-300 group"
                     >
-                      LinkedIn
+                      <span>LinkedIn</span>
+                      <ArrowUpRight className="w-3 h-3 text-bronze/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </a>
                   </div>
                 </div>
 
                 {/* Quick note */}
-                <div className="p-6 structural-border">
+                <div className="p-7 structural-border card-hover-accent">
                   <p className="font-display text-lg text-canvas-dark mb-2">
                     Response Time
                   </p>
-                  <p className="font-body text-sm text-canvas-dark/60 leading-relaxed">
+                  <p className="font-body text-sm text-canvas-dark/55 leading-relaxed">
                     We respond to all inquiries within 48 business hours. For
                     urgent matters, please call us directly.
                   </p>
