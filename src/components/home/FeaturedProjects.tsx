@@ -11,10 +11,10 @@ export function FeaturedProjects() {
   const featured = projects.filter((p) => p.featured).slice(0, 4);
 
   return (
-    <section className="py-24 lg:py-32 bg-beige">
+    <section className="py-28 lg:py-36 bg-beige">
       <Container>
         {/* Heading */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20">
           <SectionHeading
             label="02 / Selected Work"
             title="Featured Projects"
@@ -22,7 +22,7 @@ export function FeaturedProjects() {
           />
           <Link
             href="/projects"
-            className="mt-8 lg:mt-0 inline-flex items-center font-body text-xs uppercase tracking-wider text-canvas-dark/50 hover:text-bronze transition-colors duration-300 group"
+            className="mt-8 lg:mt-0 inline-flex items-center font-body text-xs uppercase tracking-wider text-canvas-dark/40 hover:text-bronze transition-colors duration-300 group hover-underline"
           >
             View All Projects
             <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">
@@ -32,7 +32,7 @@ export function FeaturedProjects() {
         </div>
 
         {/* Asymmetric grid layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Large left card */}
           {featured[0] && (
             <ProjectCard
@@ -48,7 +48,7 @@ export function FeaturedProjects() {
           )}
 
           {/* Right column — two stacked cards */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-10">
             {featured.slice(1, 3).map((project) => (
               <ProjectCard
                 key={project.slug}
@@ -66,7 +66,7 @@ export function FeaturedProjects() {
 
         {/* Bottom row — full width */}
         {featured[3] && (
-          <div className="mt-8">
+          <div className="mt-10">
             <ProjectCard
               slug={featured[3].slug}
               title={featured[3].title}
