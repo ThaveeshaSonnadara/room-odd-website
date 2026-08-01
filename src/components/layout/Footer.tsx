@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { ArrowUpRight, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { companyInfo } from '@/lib/data';
 
@@ -29,11 +30,14 @@ export function Footer() {
 
   return (
     <footer className="bg-charcoal text-white" role="contentinfo">
+      {/* Decorative top accent */}
+      <div className="h-px bg-gradient-to-r from-transparent via-bronze/30 to-transparent" />
+
       {/* Main footer */}
       <Container>
-        <div className="py-20 lg:py-24">
+        <div className="py-20 lg:py-28">
           {/* Top row — Logo + tagline */}
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20">
             <div>
               <Link href="/" className="inline-flex items-baseline gap-1.5" aria-label="Room ODD — Home">
                 <span className="font-display text-4xl lg:text-5xl tracking-tight text-white">
@@ -43,7 +47,7 @@ export function Footer() {
                   ODD
                 </span>
               </Link>
-              <p className="mt-4 font-body text-sm text-white/70 max-w-md leading-relaxed">
+              <p className="mt-5 font-body text-sm text-white/50 max-w-md leading-relaxed">
                 Chartered Architectural Consultancy. Designing exceptional
                 spaces across Sri Lanka since {companyInfo.founded}.
               </p>
@@ -51,29 +55,30 @@ export function Footer() {
 
             {/* CTA */}
             <Link
-              href="/contact"
-              className="mt-8 lg:mt-0 inline-flex items-center font-body text-xs uppercase tracking-wider px-8 py-4 bg-bronze text-white hover:bg-bronze-dark transition-colors duration-300 self-start"
+              href="/contact#contact-form"
+              className="group mt-8 lg:mt-0 inline-flex items-center gap-2 font-body text-xs uppercase tracking-wider px-8 py-4 bg-bronze text-white hover:bg-bronze-dark transition-colors duration-300 self-start"
             >
-              Start Your Project
+              <span>Start Your Project</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-white/10 mb-16" />
+          <div className="h-px bg-white/8 mb-16" />
 
           {/* Navigation columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-20">
             {/* Studio */}
             <div>
-              <h3 className="editorial-label text-white/60 mb-6">
+              <h3 className="editorial-label text-white/40 mb-6">
                 Studio
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-3.5">
                 {footerNav.studio.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
+                      className="font-body text-sm text-white/55 hover:text-white transition-colors duration-300"
                     >
                       {link.label}
                     </Link>
@@ -84,15 +89,15 @@ export function Footer() {
 
             {/* Services */}
             <div>
-              <h3 className="editorial-label text-white/60 mb-6">
+              <h3 className="editorial-label text-white/40 mb-6">
                 Services
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-3.5">
                 {footerNav.services.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
+                      className="font-body text-sm text-white/55 hover:text-white transition-colors duration-300"
                     >
                       {link.label}
                     </Link>
@@ -103,33 +108,37 @@ export function Footer() {
 
             {/* Contact */}
             <div>
-              <h3 className="editorial-label text-white/60 mb-6">
+              <h3 className="editorial-label text-white/40 mb-6">
                 Contact
               </h3>
-              <ul className="space-y-3">
-                <li>
-                  <p className="font-body text-sm text-white/70">
+              <ul className="space-y-3.5">
+                <li className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-bronze shrink-0 mt-0.5" />
+                  <p className="font-body text-sm text-white/55">
                     {companyInfo.address}
                   </p>
                 </li>
-                <li>
+                <li className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-bronze shrink-0" />
                   <a
                     href={`tel:${companyInfo.phone.replace(/\s/g, '')}`}
-                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/55 hover:text-white transition-colors duration-300"
                   >
                     {companyInfo.phone}
                   </a>
                 </li>
-                <li>
+                <li className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-bronze shrink-0" />
                   <a
                     href={`mailto:${companyInfo.email}`}
-                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/55 hover:text-white transition-colors duration-300"
                   >
                     {companyInfo.email}
                   </a>
                 </li>
-                <li>
-                  <p className="font-body text-xs text-white/50 mt-2">
+                <li className="flex items-center gap-2.5 pt-1">
+                  <Clock className="w-4 h-4 text-bronze/70 shrink-0" />
+                  <p className="font-body text-xs text-white/35">
                     {companyInfo.hours}
                   </p>
                 </li>
@@ -138,18 +147,19 @@ export function Footer() {
 
             {/* Social */}
             <div>
-              <h3 className="editorial-label text-white/60 mb-6">
+              <h3 className="editorial-label text-white/40 mb-6">
                 Follow
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-3.5">
                 <li>
                   <a
                     href={companyInfo.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/55 hover:text-white transition-colors duration-300 inline-flex items-center group"
                   >
                     Instagram
+                    <span className="ml-1.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-bronze">↗</span>
                   </a>
                 </li>
                 <li>
@@ -157,9 +167,10 @@ export function Footer() {
                     href={companyInfo.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/55 hover:text-white transition-colors duration-300 inline-flex items-center group"
                   >
                     LinkedIn
+                    <span className="ml-1.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-bronze">↗</span>
                   </a>
                 </li>
                 <li>
@@ -167,9 +178,10 @@ export function Footer() {
                     href={companyInfo.social.pinterest}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-body text-sm text-white/70 hover:text-white transition-colors duration-300"
+                    className="font-body text-sm text-white/55 hover:text-white transition-colors duration-300 inline-flex items-center group"
                   >
                     Pinterest
+                    <span className="ml-1.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-bronze">↗</span>
                   </a>
                 </li>
               </ul>
@@ -179,10 +191,10 @@ export function Footer() {
       </Container>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-white/8">
         <Container>
           <div className="flex flex-col sm:flex-row items-center justify-between py-6 gap-4">
-            <p className="font-body text-xs text-white/50">
+            <p className="font-body text-xs text-white/35">
               &copy; {currentYear} Room ODD (Pvt) Ltd. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
@@ -190,7 +202,7 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-xs text-white/50 hover:text-white/80 transition-colors duration-300"
+                  className="font-body text-xs text-white/35 hover:text-white/60 transition-colors duration-300"
                 >
                   {link.label}
                 </Link>
