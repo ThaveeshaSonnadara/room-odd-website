@@ -279,6 +279,46 @@ export const projects: Project[] = [
     materials: ['Rammed Earth', 'Cadjan Thatch', 'Natural Stone', 'Reclaimed Timber'],
     featured: true,
   },
+  {
+    slug: 'kandalama-cliff-residence',
+    title: 'Kandalama Cliff Residence',
+    category: 'residential',
+    location: 'Dambulla, Sri Lanka',
+    year: 2024,
+    area: '9,800 sq ft',
+    heroImage: '/projects/kandalama-cliff-residence/hero.jpg',
+    images: [
+      '/projects/kandalama-cliff-residence/hero.jpg',
+      '/projects/kandalama-cliff-residence/interior.jpg',
+    ],
+    brief:
+      'A cliffside family home suspended above the Kandalama reservoir, where living spaces cascade down natural rock terraces. Raw concrete and timber frame frameless glazing that disappears into the landscape.',
+    description:
+      'Kandalama Cliff Residence is an exercise in topological architecture — the house does not sit on the land but emerges from it. The design follows the natural rock terraces of the cliff face, with each level stepping down toward the water\'s edge. Fair-faced concrete walls anchor the structure, while full-height frameless glazing dissolves the boundary between interior and the panoramic reservoir view. Teak screens modulate the intense Sri Lankan sun, casting patterned shadows that shift across the day. Bronze clerestory frames catch the golden hour light, warming the concrete\'s cool materiality. The infinity pool appears to merge with the reservoir below, a visual continuity that reinforces the architecture\'s dialogue with landscape.',
+    materials: ['Fair-faced Concrete', 'Teak Screens', 'Bronze Clerestory Frames', 'Local Stone'],
+    featured: true,
+  },
+  {
+    slug: 'barefoot-luxury-pavilion',
+    title: 'Barefoot Luxury Pavilion',
+    category: 'hospitality',
+    location: 'Ahangama, Sri Lanka',
+    year: 2023,
+    area: '12,600 sq ft',
+    heroImage: '/projects/barefoot-luxury-pavilion/hero.jpg',
+    images: [
+      '/projects/barefoot-luxury-pavilion/hero.jpg',
+      '/projects/barefoot-luxury-pavilion/yoga-deck.jpg',
+      '/projects/barefoot-luxury-pavilion/treatment-room.jpg',
+      '/projects/barefoot-luxury-pavilion/sunken-lounge.jpg',
+    ],
+    brief:
+      'An oceanfront wellness pavilion for a boutique resort — open-air yoga deck, treatment rooms, and a sunken lounge all unified by a signature bronze-louvred roof canopy filtering tropical light.',
+    description:
+      'Barefoot Luxury Pavilion redefines the wellness typology for Sri Lanka\'s southern coast. Conceived as a single expansive roof gesture, the bronze-louvred canopy floats above a sequence of open and enclosed volumes, filtering the tropical sun into a soft, dappled glow. The yoga deck extends toward the Indian Ocean horizon, its timber decking warm underfoot at dawn. Treatment rooms are carved from rammed earth, their thick walls providing thermal sanctuary. The sunken lounge — a conversation pit wrapped in reclaimed timber — invites post-treatment repose with the sound of waves as backdrop. Every material is chosen for its honesty: rammed earth breathes, timber ages gracefully, bronze develops a living patina. This is architecture that does not impose on the coast but becomes part of its rhythm.',
+    materials: ['Rammed Earth', 'Reclaimed Timber', 'Bronze Louvres', 'Cadjan Thatch Accents'],
+    featured: true,
+  },
 ];
 
 // ── Team ───────────────────────────────────────────────────────────

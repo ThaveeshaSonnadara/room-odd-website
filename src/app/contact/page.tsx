@@ -101,8 +101,8 @@ export default function ContactPage() {
   };
 
   const inputClasses =
-    'w-full bg-transparent font-body text-sm text-canvas-dark placeholder:text-canvas-dark/25 py-3.5 border-b border-canvas-dark/10 focus:border-bronze focus:outline-none transition-colors duration-400';
-  const labelClasses = 'block editorial-label text-canvas-dark/35 mb-2.5';
+    'w-full bg-transparent font-body text-sm text-canvas-dark placeholder:text-canvas-dark/45 py-3.5 border-b-2 border-canvas-dark/15 focus:border-bronze focus:placeholder:text-canvas-dark/30 outline-none transition-colors duration-400';
+  const labelClasses = 'block editorial-label text-canvas-dark/50 mb-2.5';
   const errorClasses = 'mt-1.5 font-body text-xs text-error';
 
   return (

@@ -42,6 +42,16 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
     setIsOpen(false);
   };
 
+  // Light/dark mode detection for proper contrast
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDark(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDark(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
   return (
     <div className="relative w-full" ref={containerRef}>
       {/* Trigger Button */}
@@ -51,24 +61,32 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className={`w-full bg-transparent font-body text-sm py-3.5 border-b text-left flex items-center justify-between transition-colors duration-300 focus:outline-none ${
+        className={`w-full bg-transparent font-body text-sm py-3.5 border-b-2 text-left flex items-center justify-between transition-colors duration-300 focus:outline-none ${
           isOpen
             ? 'border-bronze text-canvas-dark'
-            : 'border-canvas-dark/10 hover:border-canvas-dark/30 text-canvas-dark'
+            : isDark
+            ? 'border-white/15 hover:border-white/30 text-white'
+            : 'border-canvas-dark/20 hover:border-canvas-dark/40 text-canvas-dark'
         }`}
       >
         <span
           className={
             value
-              ? 'text-canvas-dark font-medium'
-              : 'text-canvas-dark/30 font-normal'
+              ? isDark
+                ? 'text-white font-medium'
+                : 'text-canvas-dark font-medium'
+              : isDark
+              ? 'text-white/45 font-normal'
+              : 'text-canvas-dark/45 font-normal'
           }
         >
           {value || placeholder}
         </span>
 
         <motion.svg
-          className="w-4 h-4 text-canvas-dark/40 ml-2 flex-shrink-0"
+          className={`w-4 h-4 ml-2 flex-shrink-0 ${
+            isDark ? 'text-white/50' : 'text-canvas-dark/50'
+          }`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -94,7 +112,11 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
             exit={{ opacity: 0, y: -4, scaleY: 0.96 }}
             transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
             style={{ transformOrigin: 'top' }}
-            className="absolute z-50 left-0 right-0 top-full bg-white border border-canvas-dark/10 shadow-2xl shadow-charcoal/10 max-h-60 overflow-y-auto py-1 my-1"
+            className={`absolute z-50 left-0 right-0 top-full max-h-60 overflow-y-auto py-1 my-1 shadow-2xl ${
+              isDark
+                ? 'bg-charcoal border border-white/10 shadow-charcoal/30'
+                : 'bg-white border border-canvas-dark/15 shadow-charcoal/10'
+            }`}
           >
             {options.map((option) => {
               const isSelected = option === value;
@@ -107,7 +129,9 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
                   className={`px-4 py-3 text-xs md:text-sm font-body cursor-pointer flex items-center justify-between transition-all duration-200 ${
                     isSelected
                       ? 'bg-bronze/10 text-bronze font-medium'
-                      : 'text-canvas-dark/80 hover:bg-canvas-card hover:text-canvas-dark hover:pl-5'
+                      : isDark
+                      ? 'text-white/80 hover:bg-white/5 hover:text-white hover:pl-5'
+                      : 'text-canvas-dark/80 hover:bg-canvas-hover hover:text-canvas-dark hover:pl-5'
                   }`}
                 >
                   <span>{option}</span>
