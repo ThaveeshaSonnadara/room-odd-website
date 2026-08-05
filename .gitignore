@@ -16,6 +16,8 @@ build/
 dist/
 
 # Local IDE & AI session caches
+.agents/
+.codex/
 .claude/
 .impeccable/
 .antigravity/
@@ -31,6 +33,9 @@ ROOM ODD — MASTER PROJECT SPECIFICATION.md
 SKILL.md
 PRODUCT.md
 DESIGN.md
+hf.exe
+higgsfield.tar.gz
+
 
 # OS metadata
 .DS_Store
