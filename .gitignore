@@ -16,7 +16,6 @@ build/
 dist/
 
 # Local IDE & AI session caches
-.agents/
 .codex/
 .claude/
 .impeccable/
