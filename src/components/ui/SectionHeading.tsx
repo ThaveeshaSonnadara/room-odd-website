@@ -21,9 +21,9 @@ export function SectionHeading({
   className = '',
 }: SectionHeadingProps) {
   const alignment = align === 'center' ? 'text-center' : 'text-left';
-  const textColor = dark ? 'text-white' : 'text-canvas-dark';
-  const labelColor = dark ? 'text-white/50' : 'text-canvas-dark/40';
-  const subtitleColor = dark ? 'text-white/70' : 'text-canvas-dark/60';
+  const textColor = dark ? 'text-white' : 'text-canvas-dark dark:text-white';
+  const labelColor = dark ? 'text-white/50' : 'text-canvas-dark/40 dark:text-white/50';
+  const subtitleColor = dark ? 'text-white/70' : 'text-canvas-dark/60 dark:text-white/70';
   const ruleColor = dark ? 'bg-bronze/40' : 'bg-bronze/60';
 
   return (

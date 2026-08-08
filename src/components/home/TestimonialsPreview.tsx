@@ -53,6 +53,8 @@ export function TestimonialsPreview() {
     };
   }, []);
 
+  if (!testimonials || testimonials.length === 0) return null;
+
   const active = testimonials[activeIndex];
 
   return (

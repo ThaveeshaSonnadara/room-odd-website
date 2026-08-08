@@ -101,8 +101,8 @@ export default function ContactPage() {
   };
 
   const inputClasses =
-    'w-full bg-transparent font-body text-sm text-canvas-dark placeholder:text-canvas-dark/45 py-3.5 border-b-2 border-canvas-dark/15 focus:border-bronze focus:placeholder:text-canvas-dark/30 outline-none transition-colors duration-400';
-  const labelClasses = 'block editorial-label text-canvas-dark/50 mb-2.5';
+    'w-full bg-transparent font-body text-sm text-canvas-dark dark:text-white placeholder:text-canvas-dark/45 dark:placeholder:text-white/40 py-3.5 border-b-2 border-canvas-dark/15 dark:border-white/20 focus:border-bronze dark:focus:border-bronze focus:placeholder:text-canvas-dark/30 dark:focus:placeholder:text-white/20 outline-none transition-colors duration-400';
+  const labelClasses = 'block editorial-label text-canvas-dark/50 dark:text-white/50 mb-2.5';
   const errorClasses = 'mt-1.5 font-body text-xs text-error';
 
   return (
@@ -177,10 +177,10 @@ export default function ContactPage() {
                       />
                     </svg>
                   </motion.div>
-                  <p className="font-display text-3xl text-canvas-dark mb-4">
+                  <p className="font-display text-3xl text-canvas-dark dark:text-white mb-4">
                     Thank You
                   </p>
-                  <p className="font-body text-base text-canvas-dark/55">
+                  <p className="font-body text-base text-canvas-dark/55 dark:text-white/60">
                     We&apos;ve received your message and will be in touch within
                     48 hours to discuss your project.
                   </p>

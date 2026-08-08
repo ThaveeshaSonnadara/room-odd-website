@@ -56,24 +56,24 @@ export default function BlogPage() {
                     <span className="editorial-label text-bronze">
                       {post.category}
                     </span>
-                    <span className="text-canvas-dark/20">·</span>
-                    <span className="editorial-label text-canvas-dark/40">
+                    <span className="text-canvas-dark/20 dark:text-white/20">·</span>
+                    <span className="editorial-label text-canvas-dark/40 dark:text-white/40">
                       {post.readTime}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h2 className="font-display text-xl lg:text-2xl text-canvas-dark group-hover:text-bronze transition-colors duration-300 leading-snug">
+                  <h2 className="font-display text-xl lg:text-2xl text-canvas-dark dark:text-white group-hover:text-bronze transition-colors duration-300 leading-snug">
                     {post.title}
                   </h2>
 
                   {/* Excerpt */}
-                  <p className="mt-3 font-body text-sm text-canvas-dark/60 leading-relaxed line-clamp-3">
+                  <p className="mt-3 font-body text-sm text-canvas-dark/60 dark:text-white/60 leading-relaxed line-clamp-3">
                     {post.excerpt}
                   </p>
 
                   {/* Date */}
-                  <p className="mt-4 font-body text-xs text-canvas-dark/30">
+                  <p className="mt-4 font-body text-xs text-canvas-dark/30 dark:text-white/40">
                     {new Date(post.date).toLocaleDateString('en-GB', {
                       day: 'numeric',
                       month: 'long',

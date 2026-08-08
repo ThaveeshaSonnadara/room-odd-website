@@ -22,7 +22,7 @@ export function FeaturedProjects() {
           />
           <Link
             href="/projects"
-            className="mt-8 lg:mt-0 inline-flex items-center font-body text-xs uppercase tracking-wider text-canvas-dark/40 hover:text-bronze transition-colors duration-300 group hover-underline"
+            className="mt-8 lg:mt-0 inline-flex items-center font-body text-xs uppercase tracking-wider text-canvas-dark/40 dark:text-white/50 hover:text-bronze dark:hover:text-bronze transition-colors duration-300 group hover-underline"
           >
             View All Projects
             <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">

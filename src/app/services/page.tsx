@@ -195,14 +195,14 @@ export default function ServicesPage() {
                     className="w-full text-left p-5 sm:p-6 lg:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 focus:outline-none cursor-pointer"
                   >
                     <div className="flex items-start sm:items-center gap-4 sm:gap-6">
-                      <span className="editorial-label text-canvas-dark/35 font-semibold text-base sm:text-lg shrink-0">
+                      <span className="editorial-label text-canvas-dark/35 dark:text-white/35 font-semibold text-base sm:text-lg shrink-0">
                         {service.index}
                       </span>
                       <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-bronze/10 border border-bronze/20 flex items-center justify-center shrink-0 group-hover:bg-bronze transition-colors duration-300 [&_svg]:group-hover:text-white">
                         {icon}
                       </div>
                       <div>
-                        <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-canvas-dark group-hover:text-bronze transition-colors duration-300">
+                        <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-canvas-dark dark:text-white group-hover:text-bronze transition-colors duration-300">
                           {service.title}
                         </h3>
                         <p className="mt-0.5 sm:mt-1 editorial-label text-bronze">
@@ -219,9 +219,9 @@ export default function ServicesPage() {
                       <motion.div
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
-                        className="w-8 h-8 rounded-full border border-canvas-dark/10 flex items-center justify-center"
+                        className="w-8 h-8 rounded-full border border-canvas-dark/10 dark:border-white/10 flex items-center justify-center"
                       >
-                        <ChevronDown className="w-4 h-4 text-canvas-dark/60" />
+                        <ChevronDown className="w-4 h-4 text-canvas-dark/60 dark:text-white/60" />
                       </motion.div>
                     </div>
                   </button>
@@ -234,17 +234,17 @@ export default function ServicesPage() {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
-                        className="border-t border-canvas-dark/8 bg-canvas-card/40 dark:bg-black/20"
+                        className="border-t border-canvas-dark/8 dark:border-white/10 bg-canvas-card/40 dark:bg-black/20"
                       >
                         <div className="p-6 lg:p-10 space-y-10">
                           {/* Description & Deliverables */}
                           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                             <div className="lg:col-span-6 space-y-4">
-                              <h4 className="editorial-label text-canvas-dark/40 flex items-center gap-2">
+                              <h4 className="editorial-label text-canvas-dark/40 dark:text-white/40 flex items-center gap-2">
                                 <Layers className="w-3.5 h-3.5 text-bronze" />
                                 Service Overview & Approach
                               </h4>
-                              <p className="font-body text-base text-canvas-dark/70 leading-relaxed">
+                              <p className="font-body text-base text-canvas-dark/70 dark:text-white/70 leading-relaxed">
                                 {service.description}
                               </p>
                               <div className="relative aspect-[16/9] overflow-hidden bg-stone rounded-sm">
@@ -259,7 +259,7 @@ export default function ServicesPage() {
                             </div>
 
                             <div className="lg:col-span-6 space-y-4">
-                              <h4 className="editorial-label text-canvas-dark/40 flex items-center gap-2">
+                              <h4 className="editorial-label text-canvas-dark/40 dark:text-white/40 flex items-center gap-2">
                                 <CheckCircle2 className="w-3.5 h-3.5 text-bronze" />
                                 Key Tangible Deliverables
                               </h4>
@@ -267,10 +267,10 @@ export default function ServicesPage() {
                                 {deliverables.map((item) => (
                                   <div
                                     key={item}
-                                    className="p-3.5 bg-canvas dark:bg-[#1C1E24] border border-canvas-dark/8 rounded-sm flex items-center gap-2.5"
+                                    className="p-3.5 bg-canvas dark:bg-[#1C1E24] border border-canvas-dark/8 dark:border-white/10 rounded-sm flex items-center gap-2.5"
                                   >
                                     <div className="w-1.5 h-1.5 rounded-full bg-bronze shrink-0" />
-                                    <span className="font-body text-xs font-medium text-canvas-dark/80">
+                                    <span className="font-body text-xs font-medium text-canvas-dark/80 dark:text-white/80">
                                       {item}
                                     </span>
                                   </div>
@@ -278,10 +278,10 @@ export default function ServicesPage() {
                               </div>
 
                               <div className="pt-4 p-5 bg-bronze/10 border border-bronze/20 rounded-sm">
-                                <p className="font-display text-lg text-canvas-dark mb-1">
+                                <p className="font-display text-lg text-canvas-dark dark:text-white mb-1">
                                   Expected Service Outcome
                                 </p>
-                                <p className="font-body text-xs text-canvas-dark/65 leading-relaxed">
+                                <p className="font-body text-xs text-canvas-dark/65 dark:text-white/70 leading-relaxed">
                                   Every project in this discipline is executed with rigorous technical accuracy, environmental responsiveness, and bespoke architectural detailing.
                                 </p>
                               </div>
@@ -289,9 +289,9 @@ export default function ServicesPage() {
                           </div>
 
                           {/* Related Projects Showcase */}
-                          <div className="pt-8 border-t border-canvas-dark/8">
+                          <div className="pt-8 border-t border-canvas-dark/8 dark:border-white/10">
                             <div className="flex items-center justify-between mb-6">
-                              <h4 className="editorial-label text-canvas-dark/40 flex items-center gap-2">
+                              <h4 className="editorial-label text-canvas-dark/40 dark:text-white/40 flex items-center gap-2">
                                 <FolderKanban className="w-3.5 h-3.5 text-bronze" />
                                 Completed Projects for {service.title}
                               </h4>
@@ -308,7 +308,7 @@ export default function ServicesPage() {
                               {relatedProjects.map((project) => (
                                 <div
                                   key={project.slug}
-                                  className="group/card bg-canvas dark:bg-[#181A20] border border-canvas-dark/8 overflow-hidden rounded-sm hover:border-bronze/40 transition-all duration-300"
+                                  className="group/card bg-canvas dark:bg-[#181A20] border border-canvas-dark/8 dark:border-white/10 overflow-hidden rounded-sm hover:border-bronze/40 transition-all duration-300"
                                 >
                                   <div className="relative aspect-[16/10] overflow-hidden bg-stone">
                                     <Image
@@ -325,20 +325,20 @@ export default function ServicesPage() {
 
                                   <div className="p-5 space-y-2">
                                     <div className="flex items-center justify-between">
-                                      <h5 className="font-display text-xl text-canvas-dark group-hover/card:text-bronze transition-colors">
+                                      <h5 className="font-display text-xl text-canvas-dark dark:text-white group-hover/card:text-bronze transition-colors">
                                         {project.title}
                                       </h5>
-                                      <span className="editorial-label text-canvas-dark/35 text-[10px]">
+                                      <span className="editorial-label text-canvas-dark/35 dark:text-white/40 text-[10px]">
                                         {project.year}
                                       </span>
                                     </div>
 
-                                    <p className="font-body text-xs text-canvas-dark/50 flex items-center gap-1">
+                                    <p className="font-body text-xs text-canvas-dark/50 dark:text-white/50 flex items-center gap-1">
                                       <MapPin className="w-3 h-3 text-bronze shrink-0" />
                                       {project.location}
                                     </p>
 
-                                    <p className="font-body text-xs text-canvas-dark/65 line-clamp-2 leading-relaxed pt-1">
+                                    <p className="font-body text-xs text-canvas-dark/65 dark:text-white/65 line-clamp-2 leading-relaxed pt-1">
                                       {project.brief}
                                     </p>
 

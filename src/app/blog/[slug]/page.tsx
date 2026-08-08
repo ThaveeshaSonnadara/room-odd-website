@@ -80,7 +80,7 @@ export default function BlogPostPage() {
         <Container>
           <div className="max-w-3xl mx-auto">
             <motion.div
-              className="font-body text-base text-canvas-dark/80 leading-loose space-y-6"
+              className="font-body text-base text-canvas-dark/80 dark:text-white/80 leading-loose space-y-6"
               {...fadeUp}
             >
               {post.content.split('\n\n').map((paragraph, i) => (
@@ -95,7 +95,7 @@ export default function BlogPostPage() {
       {related.length > 0 && (
         <section className="py-24 lg:py-32 bg-beige">
           <Container>
-            <h2 className="font-display text-3xl text-canvas-dark mb-12">
+            <h2 className="font-display text-3xl text-canvas-dark dark:text-white mb-12">
               Continue Reading
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -111,7 +111,7 @@ export default function BlogPostPage() {
                     />
                   </div>
                   <span className="editorial-label text-bronze">{p.category}</span>
-                  <h3 className="mt-2 font-display text-xl text-canvas-dark group-hover:text-bronze transition-colors duration-300">
+                  <h3 className="mt-2 font-display text-xl text-canvas-dark dark:text-white group-hover:text-bronze transition-colors duration-300">
                     {p.title}
                   </h3>
                 </Link>
@@ -126,7 +126,7 @@ export default function BlogPostPage() {
         <Container>
           <Link
             href="/blog"
-            className="inline-flex items-center font-body text-xs uppercase tracking-wider text-canvas-dark/50 hover:text-bronze transition-colors duration-300 group"
+            className="inline-flex items-center font-body text-xs uppercase tracking-wider text-canvas-dark/50 dark:text-white/50 hover:text-bronze dark:hover:text-bronze transition-colors duration-300 group"
           >
             <span className="mr-2 inline-block transition-transform duration-300 group-hover:-translate-x-1">
               ←

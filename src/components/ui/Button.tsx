@@ -27,11 +27,11 @@ const variantStyles: Record<ButtonVariant, string> = {
   primary:
     'bg-bronze text-white hover:bg-bronze-dark active:bg-bronze-dark focus-visible:ring-bronze',
   secondary:
-    'bg-olive-deep text-white hover:bg-olive-dark active:bg-charcoal focus-visible:ring-olive',
+    'bg-olive-deep dark:bg-bronze text-white hover:bg-olive-dark dark:hover:bg-bronze-dark active:bg-charcoal focus-visible:ring-olive',
   ghost:
-    'bg-transparent text-canvas-dark hover:bg-stone/50 active:bg-stone focus-visible:ring-bronze',
+    'bg-transparent text-canvas-dark dark:text-white hover:bg-stone/50 dark:hover:bg-white/10 active:bg-stone dark:active:bg-white/20 focus-visible:ring-bronze',
   outline:
-    'bg-transparent border border-canvas-dark/20 text-canvas-dark hover:border-canvas-dark/40 hover:bg-canvas-dark/5 active:bg-canvas-dark/10 focus-visible:ring-bronze',
+    'bg-transparent border border-canvas-dark/20 dark:border-white/25 text-canvas-dark dark:text-white hover:border-canvas-dark/40 dark:hover:border-white/50 hover:bg-canvas-dark/5 dark:hover:bg-white/5 active:bg-canvas-dark/10 dark:active:bg-white/10 focus-visible:ring-bronze',
 };
 
 const lightVariantStyles: Record<ButtonVariant, string> = {

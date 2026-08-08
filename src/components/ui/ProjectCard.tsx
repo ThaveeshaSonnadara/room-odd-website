@@ -69,19 +69,19 @@ export function ProjectCard({
         {/* Info */}
         <div className="mt-5 flex items-baseline justify-between">
           <div>
-            <h3 className="font-display text-xl lg:text-2xl font-normal text-canvas-dark group-hover:text-bronze transition-colors duration-300">
+            <h3 className="font-display text-xl lg:text-2xl font-normal text-canvas-dark dark:text-white group-hover:text-bronze transition-colors duration-300">
               {title}
             </h3>
-            <p className="mt-1.5 editorial-label text-canvas-dark/40">
+            <p className="mt-1.5 editorial-label text-canvas-dark/40 dark:text-white/40">
               {category}
             </p>
           </div>
           <div className="text-right">
-            <p className="editorial-label text-canvas-dark/45 inline-flex items-center gap-1">
+            <p className="editorial-label text-canvas-dark/45 dark:text-white/45 inline-flex items-center gap-1">
               <MapPin className="w-3 h-3 text-bronze/70 shrink-0" />
               {location}
             </p>
-            <p className="editorial-label text-canvas-dark/25 mt-1">
+            <p className="editorial-label text-canvas-dark/25 dark:text-white/30 mt-1">
               {year}
             </p>
           </div>

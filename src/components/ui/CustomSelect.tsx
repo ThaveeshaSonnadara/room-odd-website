@@ -3,6 +3,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import { useTheme } from 'next-themes';
+
 interface CustomSelectProps {
   id?: string;
   placeholder?: string;
@@ -22,6 +24,8 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -37,20 +41,16 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const handleSelect = (option: string) => {
     onChange(option);
     setIsOpen(false);
   };
 
-  // Light/dark mode detection for proper contrast
-  const [isDark, setIsDark] = useState(false);
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDark(mediaQuery.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDark(e.matches);
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
-  }, []);
+  const isDark = mounted && resolvedTheme === 'dark';
 
   return (
     <div className="relative w-full" ref={containerRef}>

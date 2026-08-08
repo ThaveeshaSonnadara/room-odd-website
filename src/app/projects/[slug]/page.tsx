@@ -106,32 +106,32 @@ export default function ProjectDetailPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <motion.div className="lg:col-span-4" {...fadeUp}>
-              <h2 className="font-display text-3xl text-canvas-dark mb-6">
+              <h2 className="font-display text-3xl text-canvas-dark dark:text-white mb-6">
                 The Brief
               </h2>
-              <p className="font-body text-base text-canvas-dark/70 leading-relaxed">
+              <p className="font-body text-base text-canvas-dark/70 dark:text-white/70 leading-relaxed">
                 {project.brief}
               </p>
             </motion.div>
 
             <motion.div className="lg:col-span-8" {...fadeUp}>
-              <h2 className="font-display text-3xl text-canvas-dark mb-6">
+              <h2 className="font-display text-3xl text-canvas-dark dark:text-white mb-6">
                 Design Response
               </h2>
-              <p className="font-body text-base text-canvas-dark/70 leading-relaxed">
+              <p className="font-body text-base text-canvas-dark/70 dark:text-white/70 leading-relaxed">
                 {project.description}
               </p>
 
               {/* Materials */}
               <div className="mt-12">
-                <h3 className="editorial-label text-canvas-dark/40 mb-4">
+                <h3 className="editorial-label text-canvas-dark/40 dark:text-white/40 mb-4">
                   Material Palette
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.materials.map((material) => (
                     <span
                       key={material}
-                      className="font-body text-xs px-4 py-2 structural-border text-canvas-dark/60"
+                      className="font-body text-xs px-4 py-2 structural-border text-canvas-dark/60 dark:text-white/60"
                     >
                       {material}
                     </span>
@@ -146,7 +146,7 @@ export default function ProjectDetailPage() {
       {/* Gallery */}
       <section className="py-12 bg-beige">
         <Container>
-          <p className="editorial-label text-canvas-dark/40 mb-6">
+          <p className="editorial-label text-canvas-dark/40 dark:text-white/40 mb-6">
             {project.images.length} {project.images.length === 1 ? 'Image' : 'Images'} &nbsp;·&nbsp; Click to expand
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -202,7 +202,7 @@ export default function ProjectDetailPage() {
       {related.length > 0 && (
         <section className="py-24 lg:py-32 bg-canvas">
           <Container>
-            <h2 className="font-display text-3xl text-canvas-dark mb-12">
+            <h2 className="font-display text-3xl text-canvas-dark dark:text-white mb-12">
               Related Projects
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -217,10 +217,10 @@ export default function ProjectDetailPage() {
                       className="object-cover transition-transform duration-600 ease-architectural group-hover:scale-105"
                     />
                   </div>
-                  <h3 className="font-display text-xl text-canvas-dark group-hover:text-bronze transition-colors duration-300">
+                  <h3 className="font-display text-xl text-canvas-dark dark:text-white group-hover:text-bronze transition-colors duration-300">
                     {p.title}
                   </h3>
-                  <p className="mt-1 editorial-label text-canvas-dark/40">
+                  <p className="mt-1 editorial-label text-canvas-dark/40 dark:text-white/40">
                     {p.location} &nbsp;·&nbsp; {p.year}
                   </p>
                 </Link>

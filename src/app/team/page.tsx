@@ -60,13 +60,13 @@ export default function TeamPage() {
                 </div>
 
                 {/* Info */}
-                <h3 className="font-display text-2xl text-canvas-dark group-hover:text-bronze transition-colors duration-300">
+                <h3 className="font-display text-2xl text-canvas-dark dark:text-white group-hover:text-bronze transition-colors duration-300">
                   {member.name}
                 </h3>
                 <p className="mt-1.5 editorial-label text-bronze">
                   {member.role}
                 </p>
-                <p className="mt-4 font-body text-sm text-canvas-dark/55 leading-relaxed">
+                <p className="mt-4 font-body text-sm text-canvas-dark/55 dark:text-white/60 leading-relaxed">
                   {member.bio}
                 </p>
 
@@ -75,7 +75,7 @@ export default function TeamPage() {
                   {member.qualifications.map((q) => (
                     <span
                       key={q}
-                      className="font-body text-2xs px-3 py-1 structural-border text-canvas-dark/35 uppercase tracking-wider"
+                      className="font-body text-2xs px-3 py-1 structural-border text-canvas-dark/35 dark:text-white/40 uppercase tracking-wider"
                     >
                       {q}
                     </span>
@@ -92,7 +92,7 @@ export default function TeamPage() {
         <Container>
           <div className="max-w-2xl mx-auto text-center">
             <motion.div {...fadeUp}>
-              <p className="editorial-label text-canvas-dark/35 mb-5">Careers</p>
+              <p className="editorial-label text-canvas-dark/35 dark:text-white/40 mb-5">Careers</p>
               <motion.span
                 className="block w-12 h-px bg-bronze/40 mx-auto mb-8"
                 initial={{ scaleX: 0 }}
@@ -103,13 +103,13 @@ export default function TeamPage() {
               />
             </motion.div>
             <motion.h2
-              className="font-display text-4xl md:text-5xl font-light text-canvas-dark tracking-tighter"
+              className="font-display text-4xl md:text-5xl font-light text-canvas-dark dark:text-white tracking-tighter"
               {...fadeUp}
             >
               Join Our Studio
             </motion.h2>
             <motion.p
-              className="mt-6 font-body text-base text-canvas-dark/55 leading-relaxed"
+              className="mt-6 font-body text-base text-canvas-dark/55 dark:text-white/60 leading-relaxed"
               {...fadeUp}
             >
               We&apos;re always looking for talented architects and designers
@@ -120,7 +120,7 @@ export default function TeamPage() {
             <motion.div className="mt-12" {...fadeUp}>
               <Link
                 href="/contact"
-                className="inline-flex items-center font-body text-xs uppercase tracking-wider px-8 py-4 bg-canvas-dark text-white hover:bg-olive-deep transition-colors duration-300"
+                className="inline-flex items-center font-body text-xs uppercase tracking-wider px-8 py-4 bg-canvas-dark dark:bg-bronze text-white hover:bg-olive-deep dark:hover:bg-bronze-dark transition-colors duration-300"
               >
                 Get in Touch
               </Link>

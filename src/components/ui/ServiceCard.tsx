@@ -33,7 +33,7 @@ export function ServiceCard({
 
   return (
     <motion.div
-      className={`group relative card-hover-accent structural-border p-6 lg:p-8 transition-colors duration-400 hover:bg-beige/40 ${className}`}
+      className={`group relative card-hover-accent structural-border p-6 lg:p-8 transition-colors duration-400 hover:bg-beige/40 dark:hover:bg-white/5 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
@@ -41,7 +41,7 @@ export function ServiceCard({
     >
       {/* Top Header Row with Index & Icon */}
       <div className="flex items-center justify-between mb-6">
-        <span className="editorial-label text-canvas-dark/35 font-semibold">
+        <span className="editorial-label text-canvas-dark/35 dark:text-white/35 font-semibold">
           {index}
         </span>
         <div className="w-8 h-8 rounded-full bg-bronze/10 border border-bronze/20 flex items-center justify-center group-hover:bg-bronze transition-colors duration-300 [&_svg]:group-hover:text-white [&_svg]:transition-colors [&_svg]:duration-300">
@@ -64,12 +64,12 @@ export function ServiceCard({
 
       {/* Content */}
       <div className="flex items-baseline justify-between mb-2">
-        <h3 className="font-display text-2xl font-normal text-canvas-dark group-hover:text-bronze transition-colors duration-300">
+        <h3 className="font-display text-2xl font-normal text-canvas-dark dark:text-white group-hover:text-bronze transition-colors duration-300">
           {title}
         </h3>
         <ArrowRight className="w-4 h-4 text-bronze opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shrink-0 ml-2" />
       </div>
-      <p className="font-body text-sm text-canvas-dark/60 leading-relaxed">
+      <p className="font-body text-sm text-canvas-dark/60 dark:text-white/60 leading-relaxed">
         {description}
       </p>
     </motion.div>

@@ -350,13 +350,23 @@
   color: rgba(244, 244, 245, 0.45) !important;
 }
 
+.dark .border-canvas-dark\/50,
+.dark .border-canvas-dark\/40 {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.dark .border-canvas-dark\/30,
+.dark .border-canvas-dark\/25,
+.dark .border-canvas-dark\/20,
+.dark .border-canvas-dark\/15,
 .dark .border-canvas-dark\/10,
+.dark .border-canvas-dark\/8,
 .dark .border-canvas-dark\/6 {
-  border-color: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .dark .structural-border {
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
 .dark .bg-canvas-dark {

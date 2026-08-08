@@ -47,8 +47,8 @@ export default function ProjectsPage() {
                 aria-selected={activeCategory === cat.value}
                 className={`relative font-body text-xs uppercase tracking-wider px-5 py-2.5 shrink-0 transition-all duration-300 ${
                   activeCategory === cat.value
-                    ? 'bg-canvas-dark text-white'
-                    : 'bg-transparent text-canvas-dark/40 hover:text-canvas-dark/70 structural-border'
+                    ? 'bg-canvas-dark dark:bg-bronze text-white'
+                    : 'bg-transparent text-canvas-dark/40 dark:text-white/50 hover:text-canvas-dark/70 dark:hover:text-white structural-border'
                 }`}
               >
                 {cat.label}
@@ -87,7 +87,7 @@ export default function ProjectsPage() {
           </motion.div>
 
           {filtered.length === 0 && (
-            <p className="text-center font-body text-canvas-dark/35 py-24">
+            <p className="text-center font-body text-canvas-dark/35 dark:text-white/40 py-24">
               No projects found in this category.
             </p>
           )}

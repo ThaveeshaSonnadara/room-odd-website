@@ -105,7 +105,7 @@ export default function ProcessPage() {
                 <div className="lg:col-span-2 relative flex lg:block items-center justify-between">
                   {/* Timeline dot */}
                   <div className="hidden lg:block absolute left-0 top-3 w-2.5 h-2.5 rounded-full bg-bronze/60 -ml-[4px]" />
-                  <span className="font-display text-5xl lg:text-6xl text-canvas-dark/12 font-light lg:pl-6 group-hover:text-bronze/40 transition-colors duration-300">
+                  <span className="font-display text-5xl lg:text-6xl text-canvas-dark/12 dark:text-white/20 font-light lg:pl-6 group-hover:text-bronze/40 transition-colors duration-300">
                     {step.number}
                   </span>
                   <div className="w-8 h-8 rounded-full bg-bronze/10 border border-bronze/20 flex items-center justify-center lg:mt-4 lg:ml-6 group-hover:bg-bronze transition-colors duration-300 [&_svg]:group-hover:text-white [&_svg]:transition-colors [&_svg]:duration-300">
@@ -115,7 +115,7 @@ export default function ProcessPage() {
 
                 {/* Title + Duration */}
                 <div className="lg:col-span-3">
-                  <h3 className="font-display text-2xl lg:text-3xl text-canvas-dark">
+                  <h3 className="font-display text-2xl lg:text-3xl text-canvas-dark dark:text-white">
                     {step.title}
                   </h3>
                   <p className="mt-3 editorial-label text-bronze flex items-center gap-1.5">
@@ -126,7 +126,7 @@ export default function ProcessPage() {
 
                 {/* Description */}
                 <div className="lg:col-span-7">
-                  <p className="font-body text-base text-canvas-dark/55 leading-relaxed">
+                  <p className="font-body text-base text-canvas-dark/55 dark:text-white/60 leading-relaxed">
                     {step.description}
                   </p>
                 </div>
