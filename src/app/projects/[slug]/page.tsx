@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Container } from '@/components/ui/Container';
+import { ImageLightbox } from '@/components/ui/ImageLightbox';
 import { projects } from '@/lib/data';
 
 const fadeUp = {
@@ -19,6 +20,7 @@ export default function ProjectDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const project = projects.find((p) => p.slug === slug);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   if (!project) {
     return (
@@ -144,11 +146,15 @@ export default function ProjectDetailPage() {
       {/* Gallery */}
       <section className="py-12 bg-beige">
         <Container>
+          <p className="editorial-label text-canvas-dark/40 mb-6">
+            {project.images.length} {project.images.length === 1 ? 'Image' : 'Images'} &nbsp;·&nbsp; Click to expand
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {project.images.map((img, i) => (
-              <motion.div
+              <motion.button
                 key={i}
-                className="relative aspect-[4/3] overflow-hidden bg-stone"
+                onClick={() => setLightboxIndex(i)}
+                className="group relative aspect-[4/3] overflow-hidden bg-stone text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
@@ -157,19 +163,40 @@ export default function ProjectDetailPage() {
                   delay: i * 0.1,
                   ease: [0.22, 0.61, 0.36, 1],
                 }}
+                aria-label={`Open image ${i + 1} fullscreen`}
               >
                 <Image
                   src={img}
                   alt={`${project.title} — View ${i + 1}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-architectural group-hover:scale-105"
                 />
-              </motion.div>
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/30 transition-colors duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center h-12 w-12 border border-white/70 bg-charcoal/40 backdrop-blur-sm">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-white">
+                      <path d="M2 2h5M2 2v5M14 2h-5M14 2v5M2 14h5M2 14v-5M14 14h-5M14 14v-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </motion.button>
             ))}
           </div>
         </Container>
       </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <ImageLightbox
+            images={project.images}
+            initialIndex={lightboxIndex}
+            projectTitle={project.title}
+            onClose={() => setLightboxIndex(null)}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Related projects */}
       {related.length > 0 && (
