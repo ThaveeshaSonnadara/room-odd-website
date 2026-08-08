@@ -3,6 +3,7 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 
 interface ImageLightboxProps {
   images: string[];
@@ -11,7 +12,7 @@ interface ImageLightboxProps {
   onClose: () => void;
 }
 
-export function ImageLightbox({
+function LightboxInner({
   images,
   initialIndex,
   projectTitle,
@@ -19,6 +20,9 @@ export function ImageLightbox({
 }: ImageLightboxProps) {
   const [current, setCurrent] = useState(initialIndex);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const goTo = useCallback(
     (index: number, dir: 1 | -1) => {
@@ -31,7 +35,6 @@ export function ImageLightbox({
   const goPrev = useCallback(() => goTo(current - 1, -1), [current, goTo]);
   const goNext = useCallback(() => goTo(current + 1, 1), [current, goTo]);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -42,88 +45,93 @@ export function ImageLightbox({
     return () => window.removeEventListener('keydown', handleKey);
   }, [onClose, goNext, goPrev]);
 
-  // Lock body scroll
   useEffect(() => {
+    const original = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
+    return () => { document.body.style.overflow = original; };
   }, []);
 
-  const variants = {
-    enter: (d: number) => ({ opacity: 0, x: d * 60 }),
+  const slideVariants = {
+    enter: (d: number) => ({ opacity: 0, x: d > 0 ? 40 : -40 }),
     center: { opacity: 1, x: 0 },
-    exit: (d: number) => ({ opacity: 0, x: d * -60 }),
+    exit: (d: number) => ({ opacity: 0, x: d > 0 ? -40 : 40 }),
   };
 
+  if (!mounted) return null;
+
   return (
-    <motion.div
-      className="fixed inset-0 z-[9999] flex flex-col"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
+    <div
+      style={{ position: 'fixed', inset: 0, zIndex: 99999 }}
+      className="flex flex-col"
     >
-      {/* Backdrop */}
+      {/* Pure black backdrop — no transparency */}
       <div
-        className="absolute inset-0 bg-charcoal/96 backdrop-blur-sm"
+        style={{ position: 'absolute', inset: 0, backgroundColor: '#0d0d0d' }}
         onClick={onClose}
       />
 
-      {/* Top bar */}
-      <div className="relative z-10 flex items-center justify-between px-6 py-5 border-b border-white/8">
-        <div>
-          <p className="font-body text-xs uppercase tracking-[0.18em] text-white/40">
+      {/* ── Top bar ─────────────────────────────────────────────── */}
+      <div
+        style={{ position: 'relative', zIndex: 1 }}
+        className="flex items-center justify-between px-6 md:px-10 h-16 border-b border-white/10 flex-shrink-0"
+      >
+        <div className="flex items-center gap-4">
+          <span className="font-body text-[11px] uppercase tracking-[0.2em] text-white/30">
             {projectTitle}
-          </p>
-          <p className="font-display text-sm text-white/70 mt-0.5">
-            {current + 1} / {images.length}
-          </p>
+          </span>
+          <span className="w-px h-3 bg-white/20" />
+          <span className="font-body text-[11px] text-white/50">
+            {current + 1}&thinsp;/&thinsp;{images.length}
+          </span>
         </div>
+
         <button
           onClick={onClose}
-          aria-label="Close lightbox"
-          className="group flex items-center gap-2 font-body text-xs uppercase tracking-wider text-white/40 hover:text-white transition-colors duration-200"
+          aria-label="Close"
+          className="flex items-center justify-center w-9 h-9 border border-white/20 text-white/50 hover:text-white hover:border-white/50 transition-colors duration-200"
         >
-          <span>Close</span>
-          <span className="flex h-8 w-8 items-center justify-center border border-white/20 group-hover:border-white/50 transition-colors duration-200">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </span>
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <line x1="1" y1="1" x2="10" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            <line x1="10" y1="1" x2="1" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          </svg>
         </button>
       </div>
 
-      {/* Main image area */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-4 md:px-16 py-6 overflow-hidden">
-
-        {/* Prev button */}
+      {/* ── Main image ──────────────────────────────────────────── */}
+      <div
+        style={{ position: 'relative', zIndex: 1, flex: 1, minHeight: 0 }}
+        className="flex items-center justify-center"
+      >
+        <div className="flex items-center w-full h-full max-w-6xl mx-auto">
+        {/* Prev */}
         <button
-          onClick={goPrev}
+          onClick={(e) => { e.stopPropagation(); goPrev(); }}
           aria-label="Previous image"
-          className="absolute left-4 md:left-8 z-20 group flex items-center justify-center h-12 w-12 border border-white/20 hover:border-white/60 transition-all duration-200 bg-charcoal/40 hover:bg-charcoal/70 backdrop-blur-sm"
+          className="flex-shrink-0 flex items-center justify-center w-12 h-12 mx-3 md:mx-5 border border-white/15 text-white/40 hover:text-white hover:border-white/50 transition-colors duration-200 bg-black/20 hover:bg-black/40"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-white/60 group-hover:text-white transition-colors duration-200">
-            <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
 
-        {/* Image */}
-        <div className="relative w-full h-full max-w-6xl mx-auto overflow-hidden">
+        {/* Image container — fills remaining space */}
+        <div style={{ position: 'relative', flex: 1, height: '100%', minWidth: 0 }}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current}
               custom={direction}
-              variants={variants}
+              variants={slideVariants}
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-              className="absolute inset-0"
+              transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
+              style={{ position: 'absolute', inset: '12px 0' }}
             >
               <Image
                 src={images[current]}
-                alt={`${projectTitle} — View ${current + 1}`}
+                alt={`${projectTitle} — ${current + 1}`}
                 fill
-                sizes="(max-width: 768px) 100vw, 90vw"
+                sizes="(max-width: 768px) calc(100vw - 120px), calc(100vw - 160px)"
                 className="object-contain"
                 priority
               />
@@ -131,50 +139,65 @@ export function ImageLightbox({
           </AnimatePresence>
         </div>
 
-        {/* Next button */}
+        {/* Next */}
         <button
-          onClick={goNext}
+          onClick={(e) => { e.stopPropagation(); goNext(); }}
           aria-label="Next image"
-          className="absolute right-4 md:right-8 z-20 group flex items-center justify-center h-12 w-12 border border-white/20 hover:border-white/60 transition-all duration-200 bg-charcoal/40 hover:bg-charcoal/70 backdrop-blur-sm"
+          className="flex-shrink-0 flex items-center justify-center w-12 h-12 mx-3 md:mx-5 border border-white/15 text-white/40 hover:text-white hover:border-white/50 transition-colors duration-200 bg-black/20 hover:bg-black/40"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-white/60 group-hover:text-white transition-colors duration-200">
-            <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M5 2L10 7L5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
+        </div>{/* end max-w-6xl wrapper */}
       </div>
 
-      {/* Thumbnail strip */}
+      {/* ── Thumbnail strip ─────────────────────────────────────── */}
       {images.length > 1 && (
-        <div className="relative z-10 flex items-center justify-center gap-3 px-6 pb-6 pt-2">
-          {images.map((img, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i, i > current ? 1 : -1)}
-              aria-label={`View image ${i + 1}`}
-              className={`relative h-14 w-20 flex-shrink-0 overflow-hidden transition-all duration-200 ${
-                i === current
-                  ? 'ring-1 ring-bronze opacity-100'
-                  : 'opacity-40 hover:opacity-70'
-              }`}
-            >
-              <Image
-                src={img}
-                alt={`Thumbnail ${i + 1}`}
-                fill
-                sizes="80px"
-                className="object-cover"
-              />
-            </button>
-          ))}
+        <div
+          style={{ position: 'relative', zIndex: 1 }}
+          className="flex-shrink-0 border-t border-white/10 py-3 px-6"
+        >
+          <div className="flex items-center justify-center gap-2 overflow-x-auto scrollbar-none">
+            {images.map((img, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i, i > current ? 1 : -1)}
+                aria-label={`Image ${i + 1}`}
+                className={`relative flex-shrink-0 h-12 w-[72px] overflow-hidden transition-all duration-200 ${
+                  i === current
+                    ? 'ring-1 ring-offset-1 ring-offset-[#0d0d0d] ring-amber-600/80 opacity-100'
+                    : 'opacity-35 hover:opacity-65'
+                }`}
+              >
+                <Image
+                  src={img}
+                  alt={`Thumbnail ${i + 1}`}
+                  fill
+                  sizes="72px"
+                  className="object-cover"
+                />
+              </button>
+            ))}
+          </div>
+
+          {/* Keyboard hint — desktop only */}
+          <p className="hidden md:block text-center font-body text-[10px] tracking-widest text-white/18 mt-2 uppercase">
+            ← → navigate &nbsp;·&nbsp; esc close
+          </p>
         </div>
       )}
-
-      {/* Keyboard hint */}
-      <div className="relative z-10 flex justify-center pb-4">
-        <p className="font-body text-[10px] uppercase tracking-widest text-white/20">
-          ← → to navigate &nbsp;·&nbsp; esc to close
-        </p>
-      </div>
-    </motion.div>
+    </div>
   );
+}
+
+export function ImageLightbox(props: ImageLightboxProps) {
+  const [portalRoot, setPortalRoot] = useState<Element | null>(null);
+
+  useEffect(() => {
+    setPortalRoot(document.body);
+  }, []);
+
+  if (!portalRoot) return null;
+  return createPortal(<LightboxInner {...props} />, portalRoot);
 }
